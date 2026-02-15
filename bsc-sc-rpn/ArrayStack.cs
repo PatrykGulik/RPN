@@ -9,26 +9,42 @@ namespace bsc_sc_rpn
     public class ArrayStack<T> : IStack<T>
     {
         private T[] items;
-        private int currentIndex;
+        private int top = 0;
 
         public ArrayStack(int capacity) 
         {
             items = new T[capacity];
-            currentIndex = 0;
         }
 
         public void Push(T item)
         {
-            items[currentIndex++] = item;
+            if (top >= items.Length)
+            {
+                throw new InvalidOperationException("Full");
+            }
+            top++;
+            items[top] = item;
+          
         }
         public T Pop()
         {
-            return items[currentIndex];
+            if (IsEmpty())
+            {
+                throw new IndexOutOfRangeException("Invalid");
+            }
+
+            T item = items[top];
+            top--; 
+            return item;
         }
 
         public T Peek()
         {
-            return items[currentIndex];
+            if (IsEmpty())
+            {
+                throw new IndexOutOfRangeException("Invalid");
+            }
+            return items[top];
         }
 
         public bool IsEmpty()
