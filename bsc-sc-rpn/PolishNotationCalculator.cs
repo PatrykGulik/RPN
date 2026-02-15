@@ -19,12 +19,15 @@
 
             foreach (string part in parts)
             {
-                bool operand = !double.TryParse(part, out double number);
-
-                if (operand)
+                
+                if (double.TryParse(part, out double number))
+                {
+                    stack.Push(number);
+                }
+                else
                 {
                     double[] doubles = new double[2];   
-
+                    
                     for (int i = 0; i < 2; i++)
                     {
                         doubles[i] = stack.Pop();
@@ -49,10 +52,6 @@
                     {
                         stack.Push(doubles[1] / doubles[0]);
                     }
-                }
-                else if (!operand)
-                {
-                    stack.Push(number);
                 }
             }
 
