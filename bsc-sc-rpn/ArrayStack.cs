@@ -20,7 +20,7 @@ namespace bsc_sc_rpn
         {
             if (top >= items.Length)
             {
-                throw new InvalidOperationException("Full");
+                throw new InvalidOperationException("Stack is full");
             }
             top++;
             items[top] = item;
@@ -30,7 +30,7 @@ namespace bsc_sc_rpn
         {
             if (IsEmpty())
             {
-                throw new IndexOutOfRangeException("Invalid");
+                throw new IndexOutOfRangeException("Invalid index");
             }
 
             T item = items[top];
@@ -42,7 +42,7 @@ namespace bsc_sc_rpn
         {
             if (IsEmpty())
             {
-                throw new IndexOutOfRangeException("Invalid");
+                throw new IndexOutOfRangeException("Invalid index");
             }
             return items[top];
         }

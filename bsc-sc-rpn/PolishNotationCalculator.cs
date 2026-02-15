@@ -33,29 +33,31 @@
                         doubles[i] = stack.Pop();
                     }
 
-                    if (part == "+")
+                    switch (part)
                     {
-                        stack.Push(doubles[1] + doubles[0]);
-                    }
+                        case "+":
+                            stack.Push(doubles[1] + doubles[0]);
+                            break;
 
-                    if (part == "-")
-                    {
-                        stack.Push(doubles[1] - doubles[0]);
-                    }
+                        case "-":
+                            stack.Push(doubles[1] - doubles[0]);
+                            break;
 
-                    if (part == "*")
-                    {
-                        stack.Push(doubles[1] * doubles[0]);
-                    }
+                        case "*":
+                            stack.Push(doubles[1] * doubles[0]);
+                            break;
 
-                    if (part == "/")
-                    {
-                        stack.Push(doubles[1] / doubles[0]);
+                        case "/":
+                            stack.Push(doubles[1] / doubles[0]);
+                            break;
+
+                        default:
+                            throw new System.InvalidOperationException("Unknown operator "+part);
                     }
                 }
             }
 
-            return stack.Pop();
+            return stack.Peek();
         }
     }
 }

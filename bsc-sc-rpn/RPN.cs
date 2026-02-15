@@ -22,15 +22,19 @@ namespace bsc_sc_rpn
 
         private void Btn_Eval_Click(object sender, EventArgs e)
         {
-            // Read and Parse Expression here... 
-            stack = new ArrayStack<double>(10);
+            try
+            {
+                stack = new ArrayStack<double>(10);
+                calculator = new PolishNotationCalculator(stack);
 
-            calculator = new PolishNotationCalculator(stack);
-
-
-            string input = Txt_Input.Text;
-
-            Lbl_Output.Text = calculator.Evaluate(input).ToString();
+                string input = Txt_Input.Text;
+                Lbl_Output.Text = calculator.Evaluate(input).ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Invalid: " + ex.Message);
+            }
+            
         }
     }
 }
