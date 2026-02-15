@@ -23,6 +23,14 @@ namespace bsc_sc_rpn
         private void Btn_Eval_Click(object sender, EventArgs e)
         {
             // Read and Parse Expression here... 
+            stack = new ArrayStack<double>(10);
+
+            calculator = new PolishNotationCalculator(stack);
+
+
+            string input = Txt_Input.Text;
+
+            Lbl_Output.Text = calculator.Evaluate(input).ToString();
         }
     }
 }
