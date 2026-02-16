@@ -4,28 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * Patryk Gulik
+ * 11002010
+ * Class: ArrayStack
+ * Implements IStack<T>
+ * Stores elements in an array 
+ */
+
 namespace bsc_sc_rpn
 {
+
+    // Class decalaration - generic, works with any type
     public class ArrayStack<T> : IStack<T>
     {
         private T[] items;
-        private int top = 0;
+        private int _top = 0;
 
+        // Constructor
         public ArrayStack(int capacity) 
         {
             items = new T[capacity];
         }
 
+        // Push operation
         public void Push(T item)
         {
-            if (top >= items.Length)
+            if (_top >= items.Length)
             {
                 throw new InvalidOperationException("Stack is full");
             }
-            top++;
-            items[top] = item;
+            _top++;
+            items[_top] = item;
           
         }
+
+        // Pop operation
         public T Pop()
         {
             if (IsEmpty())
@@ -33,20 +47,22 @@ namespace bsc_sc_rpn
                 throw new IndexOutOfRangeException("Invalid index");
             }
 
-            T item = items[top];
-            top--; 
+            T item = items[_top];
+            _top--; 
             return item;
         }
 
+        // Peek operation
         public T Peek()
         {
             if (IsEmpty())
             {
                 throw new IndexOutOfRangeException("Invalid index");
             }
-            return items[top];
+            return items[_top];
         }
 
+        // Checks if stack is empty 
         public bool IsEmpty()
         {
             return items.Length == 0;

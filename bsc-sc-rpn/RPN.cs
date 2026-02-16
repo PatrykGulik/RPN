@@ -8,6 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ * Patryk Gulik
+ * 11002010
+ * Class: RPN
+ * Manages UI and user interactions
+ * Instantiates objects and calls methods
+ */
+
 namespace bsc_sc_rpn
 {
     public partial class RPN : Form

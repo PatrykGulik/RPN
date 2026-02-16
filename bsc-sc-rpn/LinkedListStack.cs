@@ -4,12 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * Patryk Gulik
+ * 11002010
+ * Class: LinkedListStack
+ * Implements IStack<T>
+ * Stores elements dynamically 
+ */
+
 namespace bsc_sc_rpn
 {
+
+    // Class decalaration - generic, works with any type
     public class LinkedListStack<T> : IStack<T>
     {
 
-        private Node top;
+        // Reference to the top node
+        private Node _top;
+
+        // Node structure
         public class Node {
 
             public T data { get; set; }
@@ -22,18 +35,21 @@ namespace bsc_sc_rpn
             }               
         }
 
+        // Constructor
         public LinkedListStack() 
         {
-            top = null;
+            _top = null;
         }
 
+        // Push operation
         public void Push(T item)
         {
             Node temp = new Node(item);
-            temp.next = top;
-            top = temp;
+            temp.next = _top;
+            _top = temp;
         }
 
+        // Pop operation
         public T Pop()
         {
             if (IsEmpty())
@@ -41,23 +57,25 @@ namespace bsc_sc_rpn
                 throw new IndexOutOfRangeException("Invalid index");
             }
 
-            T item = top.data;
-            top = top.next;
+            T item = _top.data;
+            _top = _top.next;
             return item;
         }
 
+        // Peek operation
         public T Peek()
         {
             if (IsEmpty())
             {
                 throw new IndexOutOfRangeException("Invalid index");
             }
-            return top.data;
+            return _top.data;
         }
 
+        // Checks if stack is empty
         public bool IsEmpty()
         {
-            return top == null;
+            return _top == null;
         }
 
 

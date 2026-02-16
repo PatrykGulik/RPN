@@ -1,31 +1,42 @@
-﻿namespace bsc_sc_rpn
+﻿/*
+ * Patryk Gulik
+ * 11002010
+ * Class: PolishNotationCalculator
+ * Handles Stack and calculates the result
+ */
+
+namespace bsc_sc_rpn
 {
     public class PolishNotationCalculator
     {
         /* Use the IStack<double> interface type to allow the flexibility of using different stack implementations 
          * (e.g., ArrayStack or LinkedListStack). */
         private IStack<double> stack;
-
+       
+        // Constructor
         public PolishNotationCalculator(IStack<double> stackImplementation)
         {
             stack = stackImplementation;
         }
 
+        // Processes the stack and calculates the result
         public double Evaluate(string expression)
         {
 
+            // Splits the expression using space as delimiter 
             string[] parts = expression.Split(' ');
 
-
+            // Checks each element in the array
             foreach (string part in parts)
             {
-                
+                // If element is a number, its pushed into the stack
                 if (double.TryParse(part, out double number))
                 {
                     stack.Push(number);
                 }
                 else
                 {
+                    // If not a number, last two numbers are popped
                     double[] doubles = new double[2];   
                     
                     for (int i = 0; i < 2; i++)
@@ -33,6 +44,7 @@
                         doubles[i] = stack.Pop();
                     }
 
+                    // Operation is performed and result pushed back into the stack
                     switch (part)
                     {
                         case "+":
@@ -56,20 +68,8 @@
                     }
                 }
             }
-
+            // Final result is returned
             return stack.Peek();
         }
     }
 }
-
-/*
- * 1. Split the expression into individual tokens using a space as the delimiter.
- * 2. Iterate over each token:
- *      - If the token is a number, push it onto the stack.
- *      - If the token is an operator (+, -, *, /):
- *          a. Pop two numbers from the stack (b first, then a).
- *          b. Perform the operation (a + b, a - b, etc.).
- *          c. Push the result back onto the stack.
- * 3. After processing all tokens, the result of the calculation will be the single number remaining on the stack.
- *    Pop and return it as the final result.
- */
