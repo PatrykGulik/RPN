@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="ArrayStack.cs" />
     <Compile Include="IStack.cs" />
+    <Compile Include="LinkedListStack.cs" />
     <Compile Include="PolishNotationCalculator.cs" />
     <Compile Include="RPN.cs">
       <SubType>Form</SubType>

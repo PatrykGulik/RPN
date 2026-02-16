@@ -24,7 +24,8 @@ namespace bsc_sc_rpn
         {
             try
             {
-                stack = new ArrayStack<double>(10);
+                //stack = new ArrayStack<double>(10);
+                stack = new LinkedListStack<double>();
                 calculator = new PolishNotationCalculator(stack);
 
                 string input = Txt_Input.Text;
